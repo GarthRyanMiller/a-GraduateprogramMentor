@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="medium" (click)="canDismiss()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title slot="start">Job information</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="usersForm" (ngSubmit)="onSubmit()" novalidate>
+    <fieldset *ngIf="step == 0">
+      <ng-container
+        *ngFor="let userFormGroup of usersForm.controls; let i = index"
+      >
+        <div [formGroup]="userFormGroup">
+          <ion-item>
+            <ion-label position="floating">Title:</ion-label>
+            <ion-input formControlName="title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Client Name:</ion-label>
+            <ion-input formControlName="client_name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Device Number:</ion-label>
+            <ion-input formControlName="device_number"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Registration Number:</ion-label>
+            <ion-input formControlName="reg_number"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Fleet number:</ion-label>
+            <ion-input formControlName="fleet_number"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Longitude:</ion-label>
+            <ion-input formControlName="longitude"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Latitude:</ion-label>
+            <ion-input formControlName="latitude"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Type Of Damage:</ion-label>
+            <ion-input formControlName="type_of_damage"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Logged Fault ID:</ion-label>
+            <ion-input formControlName="logged_fault_id"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Current Fault Log Status:</ion-label>
+            <ion-input formControlName="current_fault_log_status"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position = "stacked">Date of log:</ion-label>
+            <ion-datetime-button  datetime="datetimelog">
+            </ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime
+                  id="datetimelog"
+                  [showDefaultButtons]="true"
+                  formControlName="date_of_log"
+                ></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Archived:</ion-label>
+            <ion-input formControlName="archived"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Upload Picture Name:</ion-label>
+            <ion-input formControlName="upload_picture_name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position = "stacked">Completed Date:</ion-label>
+            <ion-datetime-button  datetime="datetimeComplete">
+            </ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime
+                  id="datetimeComplete"
+                  [showDefaultButtons]="true"
+                  formControlName="completeddate"
+                  placeholder="test"
+                ></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Notes:</ion-label>
+            <ion-input formControlName="notes"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Completed:</ion-label>
+            <ion-input formControlName="completed"></ion-input>
+          </ion-item>
+        </div>
+      </ng-container>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="danger">Submit</ion-button>
+          <ion-button (click)="next()" color="danger" value="Next"
+            >Next</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </fieldset>
+  </form>
+</ion-content>
