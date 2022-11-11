@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Technical Logging</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="page == 1" fullscreen>
+  <ion-button (click)="openModal()">Open Modal Add Job</ion-button>
+  <ion-button (click)="addJobPage()">Delete</ion-button>
+
+  <ion-item><h2>Click below for more information :</h2></ion-item>
+  <!-- <ion-item *ngFor="let i of tServiceLog.logArray" (click)="onClick(i)"> {{ i.title}}</ion-item> -->
+  <ion-item
+    (click)="onClick(i)"
+    (click)="setOpen(true)"
+    *ngFor="let i of tServiceLog.logArray; let p = index"
+  >
+    {{ i.title }}
+  </ion-item>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item *ngFor="let item of jobSelected | keyvalue">
+          <p>
+            <b>{{ item.key }}: &ensp;</b> {{ item.value }}
+          </p>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
